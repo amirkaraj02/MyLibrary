@@ -1,0 +1,32 @@
+﻿@model MyLibrary.Models.tblKategori
+@{
+    ViewBag.Title = "Perditesim Kategorie";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+    <div class="row" style="margin-top:20px">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    Perditeso Kategorine
+                </header>
+                <div class="panel-body">
+                    <div class=" form">
+                        <form class="cmxform form-horizontal tasi-form" id="commentForm" method="post" action="/Kategori/Update/@Model.ID">
+                            <div class="form-group ">
+                                <label class="control-label col-lg-2">Emri Kategorise</label>
+                                <div class="col-lg-10">
+                                    <input style="color:black" class=" form-control" id="Emri" name="Emri" type="text" value="@Model.Emri" />
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <button type="submit" class="btn btn-shadow btn-success">Perditeso</button>
+                                <a href="/Kategori/Index/" type="button" class="btn btn-shadow btn-warning">Anullo</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+

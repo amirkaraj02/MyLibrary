@@ -1,0 +1,31 @@
+﻿@model MyLibrary.Models.tblAutor
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@using (Html.BeginForm("Update", "Autoret", FormMethod.Post))
+{
+    <div style="margin-top:20px"></div>
+    <div class="form-group">
+        <div style="margin-top:15px">
+            <label> ID </label>
+            @Html.TextBoxFor(x => x.ID, new { @class = "form-control" })
+        </div>
+        <div style="margin-top:15px">
+            <label> Emri </label>
+            @Html.TextBoxFor(x => x.Emri, new { @class = "form-control" })
+        </div>
+        <div style="margin-top:15px">
+            <label> Mbiemri </label>
+            @Html.TextBoxFor(x => x.Mbiemri, new { @class = "form-control" })
+        </div>
+        <div style="margin-top:15px">
+            <label> Te Dhenat e Autorit </label>
+            @Html.TextBoxFor(x => x.Detaje, new { @class = "form-control" })
+        </div>
+    </div>
+    <button class="btn btn-outline-success">Perditeso</button>
+    <a href="/Librat/Index/" class="btn btn-outline-warning">Back</a>
+}
+

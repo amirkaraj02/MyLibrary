@@ -1,0 +1,52 @@
+﻿@model MyLibrary.Models.tblPerdoruesit
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+    <form class="form-group" method="post" enctype="multipart/form-data">
+        <div style="margin-top:20px">
+            <label>Emri</label>
+            @* html helper ile yazar ismini alip db kaydedmek *@
+            @Html.TextBoxFor(x => x.Emri, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Emri, " ", new { @style = "color:forestgreen" })
+        </div>
+        <div style="margin-top:15px">
+            <label>Mbiemri</label>
+            @Html.TextBoxFor(x => x.Mbiemri, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Mbiemri, " ", new { @style = "color:forestgreen" })
+        </div>
+        <div style="margin-top:15px">
+            <label>Emaili Perdoruesit</label>
+            @Html.TextBoxFor(x => x.EMail, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.EMail, "", new { @style = "color:forestgreen" })
+        </div>
+        <div style="margin-top:15px">
+            <label>UserName</label>
+            @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.UserName, "", new { @style = "color:forestgreen" })
+        </div>
+        <div style="margin-top:15px">
+            <label>Fjalekalimi</label>
+            @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Password, "", new { @style = "color:forestgreen" })
+        </div>
+        <div style="margin-top:15px">
+            <label>Fotografia</label>
+            <input class="form-control " name="Fotografia" id="Fotografia" type="file" accept=".jpg,.jpeg,.png" />
+        </div>
+        <div style="margin-top:15px">
+            <label>Numri telefonit</label>
+            @Html.TextBoxFor(x => x.Telefoni, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Telefoni, "", new { @style = "color:forestgreen" })
+        </div>
+        <div style="margin-top:15px">
+            <label>Shkolla</label>
+            @Html.TextBoxFor(x => x.Shkolla, new { @class = "form-control" })
+        </div>
+        <div class="panel-body" style="margin-top:15px">
+            <button type="submit" class="btn btn-outline-success">Rregjitro</button>
+            <a href="/Perdoruesit/Index/" class="btn btn-outline-warning">Back</a>
+        </div>
+    </form>
+

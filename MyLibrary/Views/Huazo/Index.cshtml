@@ -1,0 +1,34 @@
+﻿@using MyLibrary.Models
+@model List<tblLevizjet>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 style="margin-top:20px">Rikthe Librin</h2>
+<table class="table table-striped table-advance table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Emri Librit</th>
+        <th>Emri Perdoruesit</th>
+        <th>Emri Personelit</th>
+        <th>Data Huazimit</th>
+        <th>Data Rikthimit</th>
+        <th>Punet</th>
+    </tr>
+    @foreach (var lev in Model)
+    {
+        <tr>
+            <td>@lev.ID</td>
+            <td>@lev.tblLiber.Emri</td>
+            <td>@lev.tblPerdoruesit.Emri @lev.tblPerdoruesit.Mbiemri</td>
+            <td>@lev.tblPersoneli.Emri @lev.tblPerdoruesit.Mbiemri</td>
+            <td>@Convert.ToDateTime(lev.DataMarrjes).ToString("dd/MM/yyyy")</td>
+            <td>@Convert.ToDateTime(lev.DataRikthimit).ToString("dd/MM/yyyy")</td>
+            <td>
+            <a href="/Huazo/RikthimiLibrit/@lev.ID" class="btn btn-outline-dark">Rikthe Librin</a>
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,33 @@
+﻿@using MyLibrary.Models
+@model List<tblAutor>
+@{
+    ViewBag.Title = "Autoret";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 style="margin-top:20px">Autoret</h2>
+
+<table class="table table-striped table-advance table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Emri</th>
+        <th>Mbiemri</th>
+        <th>Te Dhenat</th>
+        <th>Punet</th>
+    </tr>
+    @foreach (var autoret in Model)
+    {
+        <tr>
+            <td>@autoret.ID</td>
+            <td>@autoret.Emri</td>
+            <td>@autoret.Mbiemri</td>
+            <td>@autoret.Detaje</td>
+            <td>
+                <a href="/Autoret/Select/@autoret.ID" class="btn btn-info">Perditeso</a>
+                @Html.ActionLink("Fshi", "Delete", new { id = autoret.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Jeni i sigurt qe doni ta fshini')" })
+            </td>
+        </tr>
+    }
+
+</table>
+<a href="/Autoret/Create/" class="btn btn-primary">Shto nje Autor</a>

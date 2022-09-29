@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="07c9af000ca044af82ba08700c701b36" Name="Diagram1">
+        <EntityTypeShape EntityType="db_LibraryModel.sysdiagram" Width="1.5" PointX="5.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_LibraryModel.tblAutor" Width="1.5" PointX="1.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_LibraryModel.tblDenimet" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_LibraryModel.tblKasa" Width="1.5" PointX="7.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_LibraryModel.tblKategori" Width="1.5" PointX="1.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_LibraryModel.tblLevizjet" Width="1.5" PointX="6" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_LibraryModel.tblLiber" Width="1.5" PointX="3.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_LibraryModel.tblPerdoruesit" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_LibraryModel.tblPersoneli" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="db_LibraryModel.FK_tblLiber_tblAutor" ManuallyRouted="false" />
+        <AssociationConnector Association="db_LibraryModel.FK_tblDenimet_tblLevizjet" ManuallyRouted="false" />
+        <AssociationConnector Association="db_LibraryModel.FK_tblDenimet_tblPerdoruesit" ManuallyRouted="false" />
+        <AssociationConnector Association="db_LibraryModel.FK_tblLiber_tblKategori" ManuallyRouted="false" />
+        <AssociationConnector Association="db_LibraryModel.FK_tblLevizjet_tblLiber" ManuallyRouted="false" />
+        <AssociationConnector Association="db_LibraryModel.FK_tblLevizjet_tblPerdoruesit" ManuallyRouted="false" />
+        <AssociationConnector Association="db_LibraryModel.FK_tblLevizjet_tblPersoneli" />
+        <EntityTypeShape EntityType="db_LibraryModel.tblRrethNesh" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="db_LibraryModel.tblKontaktet" Width="1.5" PointX="6.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,87 @@
+﻿
+@{
+    Layout = null;
+}
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Library - @ViewBag.Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+body {font-family: "Lato", sans-serif;}
+
+.sidebar {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 16px;
+}
+
+.sidebar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #d2d4d5;
+  display: block;
+}
+
+.sidebar a:hover {
+  color: #20d5e6;
+}
+
+        .main {
+            margin-left: 200px; /* Same as the width of the sidenav */
+            padding: 0px 10px;
+        }
+
+@@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+        .sidebar a {
+            font-size: 18px;
+        }
+}
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <a href="#"><i class="fa fa-fw fa-home"></i>Kreu</a>
+        <a href="/Kategori/Index/"><i class="fa fa-fw fa-list"></i>Kategorite</a>
+        <a href="/Librat/Index/"><i class="fa fa-fw fa-book"></i> Librat</a>
+        <a href="/Autoret/Index/"><i class="fa fa-fw fa-user"></i> Autoret</a>
+        <a href="/Perdoruesit/Index/"><i class="fa fa-fw fa-child"></i> Perdoruesit</a>
+        <a href="/Personel/Index/"><i class="fa fa-fw fa-building"></i> Personeli</a>
+        <a href="/Huazo/HuazoLibrin/"><i class="fa fa-fw fa-share"></i> Huazo Librin</a>
+        <a href="/Huazo/Index/"><i class="fa fa-fw fa-reply"></i> Rikthe Librin</a>
+        <a href="#"><i class="fa fa-fw fa-eur"></i> Kasa</a>
+        <a href="/Statistikat/Index/"><i class="fa fa-fw fa-bar-chart"></i> Statistikat</a>
+        <a href="#"><i class="fa fa-fw fa-picture-o"></i> Galeria</a>
+        <a href="/Vitrin/Index/" target="_blank"><i class="fa fa-fw fa-gift"></i> Vitrina</a>
+        <a href="/Transaksionet/Index/"><i class="fa fa-fw fa-eercast"></i> Transaksionet</a>
+        <a href="#"><i class="fa fa-fw fa-cogs"></i> Cilesimet</a>
+        <a href="#"><i class="fa fa-fw fa-exclamation-triangle"></i> Ndihme</a>
+        <a href="#"><i class="fa fa-fw fa-sign-out"></i> Dil</a>
+    </div>
+
+    <div class="main">
+
+        @RenderBody()
+
+    </div>
+    <!-- Copyright Section -->
+    <section class="copyright py-4 text-center text-black-50">
+        <div class="container">
+            <small>Copyright &copy; AK Soft</small>
+        </div>
+    </section>
+</body>
+</html>

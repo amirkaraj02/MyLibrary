@@ -1,0 +1,29 @@
+﻿@using MyLibrary.Models
+@model List<tblKategori>
+@{
+    ViewBag.Title = "Kategorite";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 style="margin-top:20px">Kategorite</h2>
+
+<table class="table table-striped table-advance table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Emri</th>
+        <th>Punet</th>
+    </tr>
+    @foreach (var kategori in Model)
+    {
+        <tr>
+            <td>@kategori.ID</td>
+            <td>@kategori.Emri</td>
+            <td>
+                <a href="/Kategori/Update/@kategori.ID" class="btn btn-info">Perditeso</a>
+                <a href="/Kategori/Delete/@kategori.ID" class="btn btn-danger">Fshi</a>
+            </td>
+        </tr>
+    }
+
+</table>
+<a href="/Kategori/Create" class="btn btn-primary">Shto nje Kategori</a>

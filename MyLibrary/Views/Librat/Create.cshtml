@@ -1,0 +1,39 @@
+﻿@model MyLibrary.Models.tblLiber
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div style="margin-top:20px">
+        <label>Emri Librit</label>
+        @* html helper ile yazar ismini alip db kaydedmek *@
+        @Html.TextBoxFor(L => L.Emri, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Kategoria</label>
+        @Html.DropDownListFor(L => L.tblKategori.ID, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+
+    </div>
+    <div style="margin-top:15px">
+        <label>Autori</label>
+        @Html.DropDownListFor(L => L.tblAutor.ID, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Viti Botimit</label>
+        @Html.TextBoxFor(L => L.VitiShtypjes, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Shtepia Botuese</label>
+        @Html.TextBoxFor(L => L.ShtepiaBotuse, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Faqet e Librit</label>
+        @Html.TextBoxFor(L => L.Faqe, new { @class = "form-control" })
+    </div>
+    <div class="panel-body" style="margin-top:15px">
+        <button type="submit" class="btn btn-outline-success">Save</button>
+        <a href="/Librat/Index/" class="btn btn-outline-warning">Back</a>
+    </div>
+</form>
+

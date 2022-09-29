@@ -1,0 +1,186 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+<link href="~/Content/web2/css/style.css" rel="stylesheet" />
+<script src="~/Content/web2/js/Chart1.js"></script>
+<script src="~/Content/web2/js/jquery.min.js"></script>
+<script src="~/Content/web2/js/jquery.vmap.js"></script>
+<script src="~/Content/web2/js/jquery.vmap.sampledata.js"></script>
+<script src="~/Content/web2/js/jquery.vmap.world.js"></script>
+
+<script>
+    $(document).ready(function (c) {
+        $('.alert-close3').on('click', function (c) {
+            $('.site-report').fadeOut('slow', function (c) {
+                $('.site-report').remove();
+            });
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function (c) {
+        $('.alert-close6').on('click', function (c) {
+            $('.world-map').fadeOut('slow', function (c) {
+                $('.world-map').remove();
+            });
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery('#vmap').vectorMap({
+            map: 'world_en',
+            backgroundColor: '#333333',
+            color: '#ffffff',
+            hoverOpacity: 0.7,
+            selectedColor: '#666666',
+            enableZoom: true,
+            showTooltip: true,
+            values: sample_data,
+            scaleColors: ['#C8EEFF', '#006491'],
+            normalizeFunction: 'polynomial'
+        });
+    });
+</script>
+
+<div class="list_of_members">
+    <div class="sales">
+        <div class="icon">
+            <i class="dollar"></i>
+        </div>
+        <div class="icon-text">
+            <h3>15896</h3>
+            <p>Sales</p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="new-users">
+        <div class="icon">
+            <i class="user1"></i>
+        </div>
+        <div class="icon-text">
+            <h3>30</h3>
+            <p>Perdorues</p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="orders">
+        <div class="icon">
+            <i class="order"></i>
+        </div>
+        <div class="icon-text">
+            <h3>1000</h3>
+            <p>Libra</p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="visitors">
+        <div class="icon">
+            <i class="visit"></i>
+        </div>
+        <div class="icon-text">
+            <h3>85k</h3>
+            <p>Libra te Huazuar</p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<div class="total-sales">
+    <div class="user-trends">
+        <div class="alert-close7"> </div>
+
+        <canvas id="bar" height="340" width="780"></canvas>
+        <script>
+
+            var barChartData = {
+                labels: ["Janar", "Shkurt", "Mars", "Prill", "Maj", "Qershor", "Korrik"],
+                datasets: [
+                    {
+                        fillColor: "rgba(255, 137, 167, 0.78)",
+                        strokeColor: "rgba(220,220,220,1)",
+                        data: [65, 59, 90, 81, 56, 55, 40]
+                    },
+                    {
+                        fillColor: "rgba(140, 145, 255, 0.69)",
+                        strokeColor: "rgba(151,187,205,1)",
+                        data: [28, 48, 40, 19, 96, 27, 100]
+                    }
+                ]
+
+            }
+
+            var myLine = new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
+
+        </script>
+    </div>
+    <div class="to-do">
+        <div class="alert-close5"> </div>
+        <h3>Lista e Kontrollit</h3>
+        <div class="checkbox-form">
+            <div class="check">
+                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Kerko per shtepi botuese</label>
+            </div>
+            <div class="check">
+                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Kontroll i librave te huazuar</label>
+            </div>
+            <div class="check">
+                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Kontroll i kases</label>
+            </div>
+            <div class="check">
+                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Kerkimi per libra te ri</label>
+            </div>
+            <div class="check">
+                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Pasurimi i kategorive te librave</label>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<div class="total-world">
+    <div class="world-map">
+        <div class="alert-close6"> </div>
+        <h3>World Map</h3>
+        <p><span class="color1"></span>40%<span class="color2"></span>12%<span class="color3"></span>11%<span class="color4"></span>10%<span class="color5"></span>18%</p>
+        <div class="clearfix"></div>
+        <div id="vmap" style="width: 600px; height: 400px;"></div>
+    </div>
+    <div class="site-report">
+        <div class="alert-close3"> </div>
+        <h3>Raportet e Sistemit</h3>
+        <div class="skills-top">
+            <h5>Kenaqesia</h5>
+            <h4>96%</h4>
+            <div class="clearfix"></div>
+            <div class="skills">
+                <div class="skill" style="width:96%"></div>
+            </div>
+        </div>
+        <div class="skills-top">
+            <h5>Besueshmeria</h5>
+            <h4>90%</h4>
+            <div class="clearfix"></div>
+            <div class="skills">
+                <div class="skill1" style="width:90%"></div>
+            </div>
+        </div>
+        <div class="skills-top">
+            <h5>Lexueshmeria</h5>
+            <h4>89%</h4>
+            <div class="clearfix"></div>
+            <div class="skills">
+                <div class="skill2" style="width:89%"></div>
+            </div>
+        </div>
+        <p>MY LIBRARY ju uron lexim te kendshem</p>
+    </div>
+    <div class="clearfix"></div>
+</div>

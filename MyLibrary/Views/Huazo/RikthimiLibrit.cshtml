@@ -1,0 +1,41 @@
+﻿@model MyLibrary.Models.tblLevizjet
+@{
+    ViewBag.Title = "Rikthe Librin";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@using (Html.BeginForm("RikthimiLibrit", "Huazo", FormMethod.Post))
+{
+    <div style="margin-top:20px"></div>
+    <div class="form-group">
+        <div style="margin-top:15px">
+            <label> Emri Librit </label>
+            @Html.TextBoxFor(x => x.tblLiber.Emri, new { @class = "form-control" })
+        </div>
+        <div style="margin-top:15px">
+            <label> Emri Mbiemri Perdoruesit </label>
+            @*@Html.TextBoxFor(x => x.tblPerdoruesit.Emri, new { @class = "form-control" })*@
+            <input class="form-control" type="text" value="@Model.tblPerdoruesit.Emri  @Model.tblPerdoruesit.Mbiemri" />
+        </div>
+        <div style="margin-top:15px">
+            <label> Emri Mbiemri Personelit </label>
+            <input class="form-control" type="text" value="@Model.tblPersoneli.Emri  @Model.tblPersoneli.Mbiemri" />
+            @*@Html.TextBoxFor(x => x.tblPersoneli.Emri + x.tblPersoneli.Mbiemri, new { @class = "form-control" })*@
+        </div>
+        <div style="margin-top:15px">
+            <label> Data Huazimit </label>
+            <input type="text" class="form-control" value="@Convert.ToDateTime(Model.DataMarrjes).ToString("dd/MM/yyyy")" readonly />
+        </div>
+        <div style="margin-top:15px">
+            <label> Data kur duhet ta riktheje </label>
+            <input type="text" class="form-control" value="@Convert.ToDateTime(Model.DataRikthimit).ToString("dd/MM/yyyy")" readonly />
+        </div>
+        <div style="margin-top:15px">
+            <label> Data e Rikthimit </label>
+            <input type="text" class="form-control" name="DataRikthimitPerdoruesit" value="@DateTime.Now.ToShortDateString()" readonly />
+        </div>
+    </div>
+    <button class="btn btn-outline-info">Rikthe Librin</button>
+    <a href="/Huazo/Index/" class="btn btn-outline-warning">Back</a>
+}
+

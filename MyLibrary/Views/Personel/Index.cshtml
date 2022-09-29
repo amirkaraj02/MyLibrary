@@ -1,0 +1,32 @@
+﻿@using MyLibrary.Models;
+@model List<tblPersoneli>
+@{
+    ViewBag.Title = "Personeli";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 style="margin-top:20px">Personeli</h2>
+
+<table class="table table-striped table-advance table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Emri</th>
+        <th>Mbiemri</th>
+        <th>Punet</th>
+    </tr>
+    @foreach (var personel in Model)
+    {
+        <tr>
+            <td>@personel.ID</td>
+            <td>@personel.Emri</td>
+            <td>@personel.Mbiemri</td>
+            <td>
+                <a href="/Personel/Update/@personel.ID" class="btn btn-info">Perditeso</a>
+                @Html.ActionLink("Fshi", "Delete", new { id = personel.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Jeni i sigurt qe doni ta fshini...')" })
+
+            </td>
+        </tr>
+    }
+
+</table>
+<a href="/Personel/Create" class="btn btn-primary">Shto Personel te ri</a>

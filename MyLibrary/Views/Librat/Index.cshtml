@@ -1,0 +1,51 @@
+﻿@using MyLibrary.Models
+@model List<tblLiber>
+@{
+    ViewBag.Title = "Librat";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2 style="margin-top:20px">Librat</h2>
+@using (Html.BeginForm("Index", "Librat", FormMethod.Get))
+{
+    <div style="margin-bottom:15px; margin-top:15px">
+        <input id="libri" name="libri" type="text" class="form-group form-control-sm" placeholder="Kerkoni librin qe deshironi..." /> 
+        <input type="submit" value="Search" />
+    </div>
+}
+
+<table class="table table-striped table-advance table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Emri Librit</th>
+        <th>Autori</th>
+        <th>Kategoria</th>
+        <th>Botimi</th>
+        <th>Shtepia Botuese</th>
+        <th>Foto</th>
+        <th>Faqet</th>
+        <th>Gjendja</th>
+        <th>Punet</th>
+    </tr>
+    @foreach (var librat in Model)
+    {
+        <tr>
+            <td>@librat.ID</td>
+            <td>@librat.Emri</td>
+            <td>@librat.tblAutor.Emri @librat.tblAutor.Mbiemri</td>
+            <td>@librat.tblKategori.Emri</td>
+            <td>@librat.VitiShtypjes</td>
+            <td>@librat.ShtepiaBotuse</td>
+            <td><img src="@librat.FotoLibrit" width="60" height="50"/></td>
+            <td>@librat.Faqe</td>
+            <td>@librat.GjendjaLibrit</td>
+            <td>
+                <a href="/Librat/Update/@librat.ID" class="btn btn-info">Perditeso</a>
+                @Html.ActionLink("Fshi", "Delete", new { id = librat.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Jeni i sigurt qe doni ta fshini')" })
+
+            </td>
+        </tr>
+    }
+</table>
+
+<a href="/Librat/Create/" class="btn btn-primary">Shto nje Liber te ri</a>

@@ -1,0 +1,652 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="db_LibraryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tblAutor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Emri" Type="varchar" MaxLength="30" />
+          <Property Name="Mbiemri" Type="varchar" MaxLength="30" />
+          <Property Name="Detaje" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tblDenimet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Perdoruesi" Type="int" />
+          <Property Name="Levizja" Type="int" />
+          <Property Name="DataFillimit" Type="smalldatetime" />
+          <Property Name="DataMbarimit" Type="smalldatetime" />
+          <Property Name="DenimiLeke" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="tblKasa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Muaji" Type="varchar" MaxLength="20" />
+          <Property Name="ShumaLeke" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="tblKategori">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Emri" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblKontaktet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Emri" Type="varchar" MaxLength="50" />
+          <Property Name="Mail" Type="varchar" MaxLength="50" />
+          <Property Name="tema" Type="varchar" MaxLength="50" />
+          <Property Name="Mesazhi" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblLevizjet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Librat" Type="int" />
+          <Property Name="Perdoruesi" Type="int" />
+          <Property Name="Personeli" Type="int" />
+          <Property Name="DataMarrjes" Type="smalldatetime" />
+          <Property Name="DataRikthimit" Type="smalldatetime" />
+          <Property Name="DataRikthimitPerdoruesit" Type="smalldatetime" />
+          <Property Name="StatusiPuneve" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblLiber">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Emri" Type="varchar" MaxLength="50" />
+          <Property Name="KategoriID" Type="int" />
+          <Property Name="AutorID" Type="int" />
+          <Property Name="VitiShtypjes" Type="char" MaxLength="4" />
+          <Property Name="ShtepiaBotuse" Type="varchar" MaxLength="50" />
+          <Property Name="FotoLibrit" Type="varchar(max)" />
+          <Property Name="Faqe" Type="varchar" MaxLength="4" />
+          <Property Name="GjendjaLibrit" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblPerdoruesit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Emri" Type="varchar" MaxLength="50" />
+          <Property Name="Mbiemri" Type="varchar" MaxLength="50" />
+          <Property Name="EMail" Type="varchar" MaxLength="50" />
+          <Property Name="UserName" Type="varchar" MaxLength="20" />
+          <Property Name="Password" Type="varchar" MaxLength="20" />
+          <Property Name="Fotografia" Type="varchar(max)" />
+          <Property Name="Telefoni" Type="varchar" MaxLength="20" />
+          <Property Name="Shkolla" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblPersoneli">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Emri" Type="varchar" MaxLength="30" />
+          <Property Name="Mbiemri" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="tblRrethNesh">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulli" Type="nvarchar" MaxLength="30" />
+          <Property Name="Pershkrimi" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_tblDenimet_tblLevizjet">
+          <End Role="tblLevizjet" Type="Self.tblLevizjet" Multiplicity="0..1" />
+          <End Role="tblDenimet" Type="Self.tblDenimet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLevizjet">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblDenimet">
+              <PropertyRef Name="Levizja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDenimet_tblPerdoruesit">
+          <End Role="tblPerdoruesit" Type="Self.tblPerdoruesit" Multiplicity="0..1" />
+          <End Role="tblDenimet" Type="Self.tblDenimet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPerdoruesit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblDenimet">
+              <PropertyRef Name="Perdoruesi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLevizjet_tblLiber">
+          <End Role="tblLiber" Type="Self.tblLiber" Multiplicity="0..1" />
+          <End Role="tblLevizjet" Type="Self.tblLevizjet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLiber">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblLevizjet">
+              <PropertyRef Name="Librat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLevizjet_tblPerdoruesit">
+          <End Role="tblPerdoruesit" Type="Self.tblPerdoruesit" Multiplicity="0..1" />
+          <End Role="tblLevizjet" Type="Self.tblLevizjet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPerdoruesit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblLevizjet">
+              <PropertyRef Name="Perdoruesi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLevizjet_tblPersoneli">
+          <End Role="tblPersoneli" Type="Self.tblPersoneli" Multiplicity="0..1" />
+          <End Role="tblLevizjet" Type="Self.tblLevizjet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPersoneli">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblLevizjet">
+              <PropertyRef Name="Personeli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLiber_tblAutor">
+          <End Role="tblAutor" Type="Self.tblAutor" Multiplicity="0..1" />
+          <End Role="tblLiber" Type="Self.tblLiber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAutor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblLiber">
+              <PropertyRef Name="AutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLiber_tblKategori">
+          <End Role="tblKategori" Type="Self.tblKategori" Multiplicity="0..1" />
+          <End Role="tblLiber" Type="Self.tblLiber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKategori">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblLiber">
+              <PropertyRef Name="KategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_LibraryModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAutor" EntityType="Self.tblAutor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDenimet" EntityType="Self.tblDenimet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblKasa" EntityType="Self.tblKasa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblKategori" EntityType="Self.tblKategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblKontaktet" EntityType="Self.tblKontaktet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLevizjet" EntityType="Self.tblLevizjet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLiber" EntityType="Self.tblLiber" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPerdoruesit" EntityType="Self.tblPerdoruesit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPersoneli" EntityType="Self.tblPersoneli" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRrethNesh" EntityType="Self.tblRrethNesh" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblDenimet_tblLevizjet" Association="Self.FK_tblDenimet_tblLevizjet">
+            <End Role="tblLevizjet" EntitySet="tblLevizjet" />
+            <End Role="tblDenimet" EntitySet="tblDenimet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDenimet_tblPerdoruesit" Association="Self.FK_tblDenimet_tblPerdoruesit">
+            <End Role="tblPerdoruesit" EntitySet="tblPerdoruesit" />
+            <End Role="tblDenimet" EntitySet="tblDenimet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLevizjet_tblLiber" Association="Self.FK_tblLevizjet_tblLiber">
+            <End Role="tblLiber" EntitySet="tblLiber" />
+            <End Role="tblLevizjet" EntitySet="tblLevizjet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLevizjet_tblPerdoruesit" Association="Self.FK_tblLevizjet_tblPerdoruesit">
+            <End Role="tblPerdoruesit" EntitySet="tblPerdoruesit" />
+            <End Role="tblLevizjet" EntitySet="tblLevizjet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLevizjet_tblPersoneli" Association="Self.FK_tblLevizjet_tblPersoneli">
+            <End Role="tblPersoneli" EntitySet="tblPersoneli" />
+            <End Role="tblLevizjet" EntitySet="tblLevizjet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLiber_tblAutor" Association="Self.FK_tblLiber_tblAutor">
+            <End Role="tblAutor" EntitySet="tblAutor" />
+            <End Role="tblLiber" EntitySet="tblLiber" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLiber_tblKategori" Association="Self.FK_tblLiber_tblKategori">
+            <End Role="tblKategori" EntitySet="tblKategori" />
+            <End Role="tblLiber" EntitySet="tblLiber" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_LibraryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblAutor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Emri" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Mbiemri" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Detaje" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblLibers" Relationship="Self.FK_tblLiber_tblAutor" FromRole="tblAutor" ToRole="tblLiber" />
+        </EntityType>
+        <EntityType Name="tblDenimet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Perdoruesi" Type="Int32" />
+          <Property Name="Levizja" Type="Int32" />
+          <Property Name="DataFillimit" Type="DateTime" Precision="0" />
+          <Property Name="DataMbarimit" Type="DateTime" Precision="0" />
+          <Property Name="DenimiLeke" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="tblLevizjet" Relationship="Self.FK_tblDenimet_tblLevizjet" FromRole="tblDenimet" ToRole="tblLevizjet" />
+          <NavigationProperty Name="tblPerdoruesit" Relationship="Self.FK_tblDenimet_tblPerdoruesit" FromRole="tblDenimet" ToRole="tblPerdoruesit" />
+        </EntityType>
+        <EntityType Name="tblKasa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Muaji" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ShumaLeke" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="tblKategori">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Emri" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblLibers" Relationship="Self.FK_tblLiber_tblKategori" FromRole="tblKategori" ToRole="tblLiber" />
+        </EntityType>
+        <EntityType Name="tblLevizjet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Librat" Type="Int32" />
+          <Property Name="Perdoruesi" Type="Int32" />
+          <Property Name="Personeli" Type="Int32" />
+          <Property Name="DataMarrjes" Type="DateTime" Precision="0" />
+          <Property Name="DataRikthimit" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblDenimets" Relationship="Self.FK_tblDenimet_tblLevizjet" FromRole="tblLevizjet" ToRole="tblDenimet" />
+          <NavigationProperty Name="tblLiber" Relationship="Self.FK_tblLevizjet_tblLiber" FromRole="tblLevizjet" ToRole="tblLiber" />
+          <NavigationProperty Name="tblPerdoruesit" Relationship="Self.FK_tblLevizjet_tblPerdoruesit" FromRole="tblLevizjet" ToRole="tblPerdoruesit" />
+          <NavigationProperty Name="tblPersoneli" Relationship="db_LibraryModel.FK_tblLevizjet_tblPersoneli" FromRole="tblLevizjet" ToRole="tblPersoneli" />
+          <Property Name="StatusiPuneve" Type="Boolean" />
+          <Property Name="DataRikthimitPerdoruesit" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="tblLiber">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Emri" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KategoriID" Type="Int32" />
+          <Property Name="AutorID" Type="Int32" />
+          <Property Name="VitiShtypjes" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="ShtepiaBotuse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Faqe" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="GjendjaLibrit" Type="Boolean" />
+          <NavigationProperty Name="tblAutor" Relationship="Self.FK_tblLiber_tblAutor" FromRole="tblLiber" ToRole="tblAutor" />
+          <NavigationProperty Name="tblKategori" Relationship="Self.FK_tblLiber_tblKategori" FromRole="tblLiber" ToRole="tblKategori" />
+          <NavigationProperty Name="tblLevizjets" Relationship="Self.FK_tblLevizjet_tblLiber" FromRole="tblLiber" ToRole="tblLevizjet" />
+          <Property Name="FotoLibrit" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblPerdoruesit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Emri" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mbiemri" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Fotografia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Telefoni" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Shkolla" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblDenimets" Relationship="Self.FK_tblDenimet_tblPerdoruesit" FromRole="tblPerdoruesit" ToRole="tblDenimet" />
+          <NavigationProperty Name="tblLevizjets" Relationship="Self.FK_tblLevizjet_tblPerdoruesit" FromRole="tblPerdoruesit" ToRole="tblLevizjet" />
+        </EntityType>
+        <EntityType Name="tblPersoneli">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Emri" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Mbiemri" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblLevizjets" Relationship="db_LibraryModel.FK_tblLevizjet_tblPersoneli" FromRole="tblPersoneli" ToRole="tblLevizjet" />
+        </EntityType>
+        <Association Name="FK_tblLiber_tblAutor">
+          <End Role="tblAutor" Type="Self.tblAutor" Multiplicity="0..1" />
+          <End Role="tblLiber" Type="Self.tblLiber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAutor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblLiber">
+              <PropertyRef Name="AutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDenimet_tblLevizjet">
+          <End Role="tblLevizjet" Type="Self.tblLevizjet" Multiplicity="0..1" />
+          <End Role="tblDenimet" Type="Self.tblDenimet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLevizjet">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblDenimet">
+              <PropertyRef Name="Levizja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDenimet_tblPerdoruesit">
+          <End Role="tblPerdoruesit" Type="Self.tblPerdoruesit" Multiplicity="0..1" />
+          <End Role="tblDenimet" Type="Self.tblDenimet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPerdoruesit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblDenimet">
+              <PropertyRef Name="Perdoruesi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLiber_tblKategori">
+          <End Role="tblKategori" Type="Self.tblKategori" Multiplicity="0..1" />
+          <End Role="tblLiber" Type="Self.tblLiber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKategori">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblLiber">
+              <PropertyRef Name="KategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLevizjet_tblLiber">
+          <End Role="tblLiber" Type="Self.tblLiber" Multiplicity="0..1" />
+          <End Role="tblLevizjet" Type="Self.tblLevizjet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLiber">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblLevizjet">
+              <PropertyRef Name="Librat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLevizjet_tblPerdoruesit">
+          <End Role="tblPerdoruesit" Type="Self.tblPerdoruesit" Multiplicity="0..1" />
+          <End Role="tblLevizjet" Type="Self.tblLevizjet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPerdoruesit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblLevizjet">
+              <PropertyRef Name="Perdoruesi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_LibraryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tblAutors" EntityType="Self.tblAutor" />
+          <EntitySet Name="tblDenimets" EntityType="Self.tblDenimet" />
+          <EntitySet Name="tblKasas" EntityType="Self.tblKasa" />
+          <EntitySet Name="tblKategoris" EntityType="Self.tblKategori" />
+          <EntitySet Name="tblLevizjets" EntityType="Self.tblLevizjet" />
+          <EntitySet Name="tblLibers" EntityType="Self.tblLiber" />
+          <EntitySet Name="tblPerdoruesits" EntityType="Self.tblPerdoruesit" />
+          <EntitySet Name="tblPersonelis" EntityType="Self.tblPersoneli" />
+          <AssociationSet Name="FK_tblLiber_tblAutor" Association="Self.FK_tblLiber_tblAutor">
+            <End Role="tblAutor" EntitySet="tblAutors" />
+            <End Role="tblLiber" EntitySet="tblLibers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDenimet_tblLevizjet" Association="Self.FK_tblDenimet_tblLevizjet">
+            <End Role="tblLevizjet" EntitySet="tblLevizjets" />
+            <End Role="tblDenimet" EntitySet="tblDenimets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDenimet_tblPerdoruesit" Association="Self.FK_tblDenimet_tblPerdoruesit">
+            <End Role="tblPerdoruesit" EntitySet="tblPerdoruesits" />
+            <End Role="tblDenimet" EntitySet="tblDenimets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLiber_tblKategori" Association="Self.FK_tblLiber_tblKategori">
+            <End Role="tblKategori" EntitySet="tblKategoris" />
+            <End Role="tblLiber" EntitySet="tblLibers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLevizjet_tblLiber" Association="Self.FK_tblLevizjet_tblLiber">
+            <End Role="tblLiber" EntitySet="tblLibers" />
+            <End Role="tblLevizjet" EntitySet="tblLevizjets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLevizjet_tblPerdoruesit" Association="Self.FK_tblLevizjet_tblPerdoruesit">
+            <End Role="tblPerdoruesit" EntitySet="tblPerdoruesits" />
+            <End Role="tblLevizjet" EntitySet="tblLevizjets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLevizjet_tblPersoneli" Association="db_LibraryModel.FK_tblLevizjet_tblPersoneli">
+            <End Role="tblPersoneli" EntitySet="tblPersonelis" />
+            <End Role="tblLevizjet" EntitySet="tblLevizjets" />
+          </AssociationSet>
+          <EntitySet Name="tblRrethNeshes" EntityType="db_LibraryModel.tblRrethNesh" />
+          <EntitySet Name="tblKontaktets" EntityType="db_LibraryModel.tblKontaktet" />
+        </EntityContainer>
+        <Association Name="FK_tblLevizjet_tblPersoneli">
+          <End Type="db_LibraryModel.tblPersoneli" Role="tblPersoneli" Multiplicity="0..1" />
+          <End Type="db_LibraryModel.tblLevizjet" Role="tblLevizjet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPersoneli">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblLevizjet">
+              <PropertyRef Name="Personeli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblRrethNesh">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulli" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Pershkrimi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblKontaktet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Emri" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tema" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mesazhi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_LibraryModelStoreContainer" CdmEntityContainer="db_LibraryEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="db_LibraryModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAutors">
+            <EntityTypeMapping TypeName="db_LibraryModel.tblAutor">
+              <MappingFragment StoreEntitySet="tblAutor">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Emri" ColumnName="Emri" />
+                <ScalarProperty Name="Mbiemri" ColumnName="Mbiemri" />
+                <ScalarProperty Name="Detaje" ColumnName="Detaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDenimets">
+            <EntityTypeMapping TypeName="db_LibraryModel.tblDenimet">
+              <MappingFragment StoreEntitySet="tblDenimet">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Perdoruesi" ColumnName="Perdoruesi" />
+                <ScalarProperty Name="Levizja" ColumnName="Levizja" />
+                <ScalarProperty Name="DataFillimit" ColumnName="DataFillimit" />
+                <ScalarProperty Name="DataMbarimit" ColumnName="DataMbarimit" />
+                <ScalarProperty Name="DenimiLeke" ColumnName="DenimiLeke" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblKasas">
+            <EntityTypeMapping TypeName="db_LibraryModel.tblKasa">
+              <MappingFragment StoreEntitySet="tblKasa">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Muaji" ColumnName="Muaji" />
+                <ScalarProperty Name="ShumaLeke" ColumnName="ShumaLeke" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblKategoris">
+            <EntityTypeMapping TypeName="db_LibraryModel.tblKategori">
+              <MappingFragment StoreEntitySet="tblKategori">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Emri" ColumnName="Emri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLevizjets">
+            <EntityTypeMapping TypeName="db_LibraryModel.tblLevizjet">
+              <MappingFragment StoreEntitySet="tblLevizjet">
+                <ScalarProperty Name="DataRikthimitPerdoruesit" ColumnName="DataRikthimitPerdoruesit" />
+                <ScalarProperty Name="StatusiPuneve" ColumnName="StatusiPuneve" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Librat" ColumnName="Librat" />
+                <ScalarProperty Name="Perdoruesi" ColumnName="Perdoruesi" />
+                <ScalarProperty Name="Personeli" ColumnName="Personeli" />
+                <ScalarProperty Name="DataMarrjes" ColumnName="DataMarrjes" />
+                <ScalarProperty Name="DataRikthimit" ColumnName="DataRikthimit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLibers">
+            <EntityTypeMapping TypeName="db_LibraryModel.tblLiber">
+              <MappingFragment StoreEntitySet="tblLiber">
+                <ScalarProperty Name="FotoLibrit" ColumnName="FotoLibrit" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Emri" ColumnName="Emri" />
+                <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+                <ScalarProperty Name="AutorID" ColumnName="AutorID" />
+                <ScalarProperty Name="VitiShtypjes" ColumnName="VitiShtypjes" />
+                <ScalarProperty Name="ShtepiaBotuse" ColumnName="ShtepiaBotuse" />
+                <ScalarProperty Name="Faqe" ColumnName="Faqe" />
+                <ScalarProperty Name="GjendjaLibrit" ColumnName="GjendjaLibrit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPerdoruesits">
+            <EntityTypeMapping TypeName="db_LibraryModel.tblPerdoruesit">
+              <MappingFragment StoreEntitySet="tblPerdoruesit">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Emri" ColumnName="Emri" />
+                <ScalarProperty Name="Mbiemri" ColumnName="Mbiemri" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Fotografia" ColumnName="Fotografia" />
+                <ScalarProperty Name="Telefoni" ColumnName="Telefoni" />
+                <ScalarProperty Name="Shkolla" ColumnName="Shkolla" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPersonelis">
+            <EntityTypeMapping TypeName="db_LibraryModel.tblPersoneli">
+              <MappingFragment StoreEntitySet="tblPersoneli">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Emri" ColumnName="Emri" />
+                <ScalarProperty Name="Mbiemri" ColumnName="Mbiemri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRrethNeshes">
+            <EntityTypeMapping TypeName="db_LibraryModel.tblRrethNesh">
+              <MappingFragment StoreEntitySet="tblRrethNesh">
+                <ScalarProperty Name="Pershkrimi" ColumnName="Pershkrimi" />
+                <ScalarProperty Name="Titulli" ColumnName="Titulli" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblKontaktets">
+            <EntityTypeMapping TypeName="db_LibraryModel.tblKontaktet">
+              <MappingFragment StoreEntitySet="tblKontaktet">
+                <ScalarProperty Name="Mesazhi" ColumnName="Mesazhi" />
+                <ScalarProperty Name="tema" ColumnName="tema" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Emri" ColumnName="Emri" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

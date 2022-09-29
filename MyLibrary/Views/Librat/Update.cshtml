@@ -1,0 +1,42 @@
+﻿@model MyLibrary.Models.tblLiber
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@using (Html.BeginForm("Update", "Librat", FormMethod.Post))
+{
+    <div style="margin-top:20px"></div>
+    <div class="form-group">
+        <div style="margin-top:15px">
+            <label>Emri Librit</label>
+            @Html.TextBoxFor(l => l.Emri, new { @class = "form-control" })
+        </div>
+        <div style="margin-top:15px">
+            <label>Kategoria</label>
+            @Html.DropDownListFor(l=>l.tblKategori.ID, (List<SelectListItem>)ViewBag.val1, new { @class="form-control"})
+        </div>
+        <div style="margin-top:15px">
+            <label>Autori</label>
+            @Html.DropDownListFor(l => l.tblAutor.ID,(List<SelectListItem>)ViewBag.val2, new { @class = "form-control" })
+        </div>
+        <div style="margin-top:15px">
+            <label>Viti Botimit</label>
+            @Html.TextBoxFor(l => l.VitiShtypjes, new { @class = "form-control" })
+        </div>
+        <div style="margin-top:15px">
+            <label>Shtepia Botuese</label>
+            @Html.TextBoxFor(l => l.ShtepiaBotuse, new { @class = "form-control" })
+        </div>
+        <div style="margin-top:15px">
+            <label>Faqet e Liobrit</label>
+            @Html.TextBoxFor(l => l.Faqe, new { @class = "form-control" })
+        </div>
+
+    </div>
+    <div class="panel-body" style="margin-top:15px">
+        <button type="submit" class="btn btn-outline-success">Perditeso</button>
+        <a href="/Librat/Index/" class="btn btn-outline-warning">Back</a>
+    </div>
+}
+

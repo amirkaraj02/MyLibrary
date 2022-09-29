@@ -1,0 +1,38 @@
+﻿@model MyLibrary.Models.tblLevizjet
+@{
+    ViewBag.Title = "HuazoLibrin";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div style="margin-top:15px">
+        <label>Emri Librit</label>
+        @Html.DropDownListFor(x => x.tblLiber.ID, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+        @*@Html.TextBoxFor(x => x.Librat, new { @class = "form-control" })*@
+
+        <div style="margin-top:20px">
+            <label>Emri Perdoruesit</label>
+            @*html helper ile yazar ismini alip db kaydedmek*@
+            @Html.DropDownListFor(x => x.tblPerdoruesit.ID, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
+            @*@Html.TextBoxFor(x=>x.Perdoruesi, new {@class = "form-control" })*@
+        </div>
+    </div>
+    <div style="margin-top:15px">
+        <label>Emri Personelit</label>
+        @Html.DropDownListFor(x => x.tblPersoneli.ID, (List<SelectListItem>)ViewBag.dgr3, new { @class = "form-control" })
+        @*@Html.TextBoxFor(x => x.Personeli, new { @class = "form-control" })*@
+
+    </div>
+    <div style="margin-top:15px">
+        <label>Data Huazimit</label>
+        <input type="text" class="form-control" name="DataMarrjes" value="@DateTime.Now.ToShortDateString()" readonly />
+    </div>
+    <div style="margin-top:15px">
+        <label>Data Rikthimit</label>
+        <input type="text" class="form-control" name="DataRikthimit" value="@DateTime.Now.AddDays(15).ToShortDateString()" readonly />
+    </div>
+    <div class="panel-body" style="margin-top:15px">
+        <button type="submit" class="btn btn-outline-success">Huazoje Librin</button>
+    </div>
+</form>
+
